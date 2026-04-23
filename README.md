@@ -10,12 +10,12 @@ Conforme a los requisitos del trabajo práctico, cada integrante tiene asignada 
 
 | Nombre y Apellido | Legajo | Feature | Responsabilidad |
 |:---:|:---:|:---:|:---|
-| **Julian Valentin Coloma Visconti** |    | **01** | **Coordinación e Infraestructura Base**: Creación del repositorio, configuración de Docker Compose, gestión de variables de entorno y documentación base. |
-| **Tomas Soler** |    | **02** | **Frontend**: Interfaz de usuario dinámica en HTML/JS servida por un servidor HTTP de Python. |
-| **Hajime Shiroma** |    | **03** | **Backend**: API REST desarrollada en Flask que actúa como puente entre la DB y el frontend. |
-| **Lucas Ignacio Modernell** |    | **04** | **Database**: Persistencia de datos con PostgreSQL y script de inicialización de tablas. |
-| **Tomas Rosato** |    | **05** | **Monitoreo**: Implementación y configuración de Portainer para la gestión visual de la infraestructura. |
-| **Mariano Salas** |    | **06** | **Extensión Opcional**: Implementación de servicio adicional (pgAdmin / Redis / API Extendida). |
+| **Julian Valentin Coloma Visconti** |  33214   | **01** | **Coordinación e Infraestructura Base**: Creación del repositorio, configuración de Docker Compose, gestión de variables de entorno y documentación base. |
+| **Tomas Soler** |  33378  | **02** | **Frontend**: Interfaz de usuario dinámica en HTML/JS servida por un servidor HTTP de Python. |
+| **Hajime Shiroma** |  31113  | **03** | **Backend**: API REST desarrollada en Flask que actúa como puente entre la DB y el frontend. |
+| **Lucas Ignacio Modernell** |  33364  | **04** | **Database**: Persistencia de datos con PostgreSQL y script de inicialización de tablas. |
+| **Tomas Rosato** | 33280  | **05** | **Monitoreo**: Implementación y configuración de Portainer para la gestión visual de la infraestructura. |
+| **Mariano Salas** |  32758  | **06** | **Extensión Opcional**: Implementación de servicio adicional (pgAdmin / Redis / API Extendida). |
 
 ## 🏗️ Arquitectura del Sistema
 El proyecto utiliza una red interna de Docker para garantizar la comunicación aislada entre componentes:
