@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamBoard App</title>
+    <style>
+        :root {
+            --bg-color: #f4f0ea; /* Tono papel vintage/crema */
+            --black: #0f0f0f;
+            --white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --border-width: 3px;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Tipografía retro-ingenieril */
+            background-color: var(--bg-color);
+            color: var(--black);
+            margin: 0;
+            padding: 3rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Contenedor Neobrutalista */
+        .container {
+            width: 100%;
+            max-width: 950px;
+            background-color: var(--white);
+            border: var(--border-width) solid var(--black);
+            border-radius: 12px;
+            /* Sombra sólida característica del estilo */
+            box-shadow: 8px 8px 0px var(--black);
+            padding: 2.5rem;
+            overflow-x: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-width) dashed var(--black);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: bold;
+            padding: 0.5rem 1.25rem;
+            border: 2px solid var(--black);
+            border-radius: 50px;
+            background-color: var(--white);
+            box-shadow: 3px 3px 0px var(--black);
+        }
+
+        /* Animación estilo vintage 'Rubber Hose' (Squash & Stretch) */
+        @keyframes rubberBounce {
+            0%, 100% { transform: scale(1, 1) translateY(0); }
+            25% { transform: scale(1.2, 0.8) translateY(2px); }
+            50% { transform: scale(0.8, 1.2) translateY(-3px); }
+            75% { transform: scale(1.1, 0.9) translateY(1px); }
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #9ca3af;
+            border: 2px solid var(--black);
+            animation: rubberBounce 1.5s infinite ease-in-out;
+        }
+
+        .status-dot.online { background-color: var(--success); }
+        .status-dot.offline { background-color: var(--error); animation-duration: 0.5s; }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1.25rem 1rem;
+            border-bottom: 2px solid var(--black);
+            text-align: left;
+        }
+
+        th {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        th:first-child { border-top-left-radius: 8px; }
+        th:last-child { border-top-right-radius: 8px; }
+
+        tr:last-child td { border-bottom: none; }
+        
+        tbody tr {
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f0fdf4; /* Resalte sutil al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>TeamBoard</h1>
+            
+            <div class="status-badge" id="backend-status">
+                <div class="status-dot" id="status-dot"></div>
+                <span id="status-text">Buscando API...</span>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>Legajo</th>
+                    <th>Feature</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="team-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
