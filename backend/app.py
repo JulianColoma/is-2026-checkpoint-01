@@ -55,7 +55,7 @@ def get_team():
         }), 503
     try:
         cursor = conn.cursor()
-        cursor.execute("SELECT nombre, apellido, legajo, feature, servicio, estado FROM members ORDER BY legajo")
+        cursor.execute("SELECT nombre, apellido, legajo, feature, servicio, estado FROM miembros ORDER BY legajo")
         rows = cursor.fetchall()
         members = []
         for row in rows:
