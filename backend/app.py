@@ -13,6 +13,20 @@ def health_check():
         "service": "teamboard-backend",
         "message": "El servicio está activo"
     }), 200
+    
+@app.route("/api/info", methods=["GET"])
+def get_info():
+    return jsonify({
+        "service": "teamboard-backend",
+        "version": "1.0.0",
+        "description": "API REST para TeamBoard App",
+        "endpoints": [
+            "/api/health",
+            "/api/team",
+            "/api/info"
+        ],
+        "maintainer": "Hajime Shiroma"
+    }), 200
 
 if __name__ == "__main__":
     port = int(os.getenv("BACKEND_PORT", 5000))
