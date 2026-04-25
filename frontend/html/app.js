@@ -2,11 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const teamBody = document.getElementById('team-body');
     const statusDot = document.getElementById('status-dot');
     const statusText = document.getElementById('status-text');
-    
-    // URL del endpoint expuesto por el contenedor del backend
-    const apiUrl = 'http://localhost:5000/api/team';
 
-    // Función para actualizar la UI según la salud del backend
+    const apiUrl = 'http://localhost:5000/api/team';
+    const healthUrl = 'http://localhost:5000/api/health';
+
     const setBackendStatus = (isOnline) => {
         if (isOnline) {
             statusDot.classList.remove('offline');
@@ -19,29 +18,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función principal para buscar y renderizar
+    const checkBackendHealth = async () => {
+        try {
+            const response = await fetch(healthUrl);
+            const healthy = response.ok;
+            setBackendStatus(healthy);
+            return healthy;
+        } catch (error) {
+            console.error('Error al verificar /api/health:', error);
+            setBackendStatus(false);
+            return false;
+        }
+    };
+
     const fetchTeamData = async () => {
+        const backendHealthy = await checkBackendHealth();
+
+        if (!backendHealthy) {
+            teamBody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align: center; color: var(--error);">
+                        El backend no responde en /api/health. Verifica el servicio en el puerto 5000.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
         try {
             const response = await fetch(apiUrl);
-            
+
             if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
+                throw new Error('Error en la respuesta del servidor al obtener el equipo');
             }
-            
+
             const teamMembers = await response.json();
-            
-            // Si la promesa se resuelve correctamente, marcamos online
-            setBackendStatus(true);
-            
-            // Limpiamos el tbody antes de inyectar
             teamBody.innerHTML = '';
-            
-            // Iteramos sobre los datos de la base de datos
+
             teamMembers.forEach(member => {
                 const row = document.createElement('tr');
-                
-                // Asumiendo que las claves del JSON son estas, si Hajime usa 
-                // nombres en inglés (ej: member.name), solo ajusta estas variables.
                 row.innerHTML = `
                     <td>${member.nombre} ${member.apellido}</td>
                     <td>${member.legajo}</td>
@@ -51,22 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 teamBody.appendChild(row);
             });
-
         } catch (error) {
-            console.error('Error al conectar con la API de TeamBoard:', error);
-            setBackendStatus(false);
-            
-            // Mensaje de fallback para la tabla
+            console.error('Error al cargar los datos del equipo:', error);
+            setBackendStatus(true);
             teamBody.innerHTML = `
                 <tr>
                     <td colspan="5" style="text-align: center; color: var(--error);">
-                        No se pudieron cargar los datos. Esperando conexión con el backend en el puerto 5000...
+                        El backend está activo, pero no se pudieron cargar los integrantes.
                     </td>
                 </tr>
             `;
         }
     };
 
-    // Ejecutamos la petición ni bien carga el DOM
     fetchTeamData();
 });
