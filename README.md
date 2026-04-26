@@ -40,7 +40,7 @@ El proyecto utiliza una red interna de Docker para garantizar la comunicación a
 2.  **Configurar el entorno:**
     Copia el archivo de plantilla y configura las credenciales (el archivo `.env` está excluido de Git por seguridad):
     ```bash
-    cp .env.example .env
+    cp .env-example .env
     ```
 3.  **Lanzar los servicios:**
     ```bash
