@@ -15,7 +15,7 @@ Conforme a los requisitos del trabajo práctico, cada integrante tiene asignada 
 | **Hajime Shiroma** |  31113  | **03** | **Backend**: API REST desarrollada en Flask que actúa como puente entre la DB y el frontend. |
 | **Lucas Ignacio Modernell** |  33364  | **04** | **Database**: Persistencia de datos con PostgreSQL y script de inicialización de tablas. |
 | **Tomas Rosato** | 33280  | **05** | **Monitoreo**: Implementación y configuración de Portainer para la gestión visual de la infraestructura. |
-| **Mariano Salas** |  32758  | **06** | **Extensión Opcional**: Implementación de servicio adicional (pgAdmin / Redis / API Extendida). |
+| **Mariano Salas** |  32758  | **06** | **Gestión de Datos (pgAdmin)**: Implementación de una interfaz gráfica para la administración, monitoreo y ejecución de queries sobre la base de datos PostgreSQL. |
 
 ## 🏗️ Arquitectura del Sistema
 El proyecto utiliza una red interna de Docker para garantizar la comunicación aislada entre componentes:
