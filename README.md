@@ -67,14 +67,14 @@ Para acceder:
 - HTTP: `http://localhost:9000`
 
 En el primer ingreso se crea un usuario administrador.
-![primer ingreso](<Captura de pantalla 2026-04-24 092115 - copia - copia.png>)
+![primer ingreso](<./imagenes/Captura de pantalla 2026-04-24 092115 - copia - copia.png>)
 
 Luego de iniciar sesión, se selecciona la opción **Get Started** para administrar el entorno Docker local.
-![alt text](<Captura de pantalla 2026-04-24 092641 - copia.png>)
-![alt text](<Captura de pantalla 2026-04-24 092655.png>)
+![alt text](<./imagenes/Captura de pantalla 2026-04-24 092641 - copia.png>)
+![alt text](<./imagenes/Captura de pantalla 2026-04-24 092655.png>)
 
 Desde el dashboard de Portainer se pueden visualizar los contenedores, imágenes, volúmenes, redes y el estado general de los servicios del proyecto (frontend, backend, database y pgAdmin), permitiendo verificar que todos los servicios se encuentran correctamente desplegados y en ejecución.
-![alt text](<Captura de pantalla 2026-04-24 092708.png>)
-![contenedores corriendo](image.png)
+
+![contenedores corriendo](./imagenes/image.png)
 
 *Este proyecto fue desarrollado bajo las normativas de Ingeniería y Calidad de Software 2026 - UTN FRLP.*
