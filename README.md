@@ -50,5 +50,31 @@ El proyecto utiliza una red interna de Docker para garantizar la comunicación a
     * Acceder a la App: `http://localhost:8080`.
     * Acceder a Portainer: `http://localhost:9000`.
 
+### Feature 05 - Portainer
+
+Se configuró Portainer CE como panel de monitoreo para visualizar y administrar los contenedores Docker del proyecto TeamBoard.
+
+El servicio se define directamente en `docker-compose.yml`, utilizando la imagen `portainer/portainer-ce:2.27.3`. No requiere Dockerfile propio.
+
+Portainer se comunica con Docker mediante el socket:
+
+`/var/run/docker.sock`
+
+Además, se configuró un volumen persistente llamado `portainer_data` para conservar la configuración del panel aunque el contenedor sea eliminado.
+
+Para acceder:
+
+- HTTP: `http://localhost:9000`
+
+En el primer ingreso se crea un usuario administrador.
+![primer ingreso](<Captura de pantalla 2026-04-24 092115 - copia - copia.png>)
+
+Luego de iniciar sesión, se selecciona la opción **Get Started** para administrar el entorno Docker local.
+![alt text](<Captura de pantalla 2026-04-24 092641 - copia.png>)
+![alt text](<Captura de pantalla 2026-04-24 092655.png>)
+
+Desde el dashboard de Portainer se pueden visualizar los contenedores, imágenes, volúmenes, redes y el estado general de los servicios del proyecto (frontend, backend, database y pgAdmin), permitiendo verificar que todos los servicios se encuentran correctamente desplegados y en ejecución.
+![alt text](<Captura de pantalla 2026-04-24 092708.png>)
+![contenedores corriendo](image.png)
 
 *Este proyecto fue desarrollado bajo las normativas de Ingeniería y Calidad de Software 2026 - UTN FRLP.*
