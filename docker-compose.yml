@@ -37,6 +37,9 @@ services:
 
   database:
     image: postgres:16-alpine
+    container_name: teamboard-db
+    env_file:
+      - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -58,11 +61,14 @@ services:
           memory: 512M
 
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.27.3
     ports:
       - "9000:9000"
-    # TODO (Feature 05): Configurar el montaje del socket de Docker
-    # TODO (Feature 05): Configurar el volumen persistente para la data
+    container_name: teamboard-portainer
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     networks:
       - teamboard_net
     deploy:
@@ -70,10 +76,35 @@ services:
         limits:
           cpus: '0.5'
           memory: 256M
+  
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: teamboard-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - teamboard_net
+    depends_on:
+      database:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+          
 networks:
   teamboard_net:
+    driver: bridge
 
 volumes:
   pgdata:
   portainer_data:
+  pgadmin_data:
